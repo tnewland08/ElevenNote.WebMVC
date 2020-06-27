@@ -1,5 +1,6 @@
 ﻿using ElevenNote.Models;
 using ElevenNote.Services;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,15 @@ namespace ElevenNote.WebMVC.Controllers
             };
 
             ModelState.AddModelError("", "Note could not be created.");
+
+            return View(model);
+        }
+
+        // GET: Note/Details
+        public ActionResult Details(int id)
+        {
+            var svc = CreateNoteService();
+            var model = svc.GetNoteById(id);
 
             return View(model);
         }
